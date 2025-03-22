@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login to your ForeverLog account</h1>
+    <h3>Account rules:</h3>
+    <p>The username needs to be between 3 - 20 characters long, and only letters, numbers, and underscores are acceptable.  Spaces are not allowed in both username and password.</p>
+    <P>The password needs to include 1 capitalized letter, and a number.  It is also required to be a minimum of 8 characters long.</P>
+
+    <p>EX: username: user, password: Password1</p>
+    <hr>
+
+    <!-- Alert for error -->
+    <% if(errorMessage){ %>
+        <div><p>Error: <%= errorMessage %></p></div>
+    <% } %>
+
+    <div>
+        <!-- This form will send username and password in req.body, which the post login route will handle and evaluate to see wether the input credentials belong to a user in the database.  Once authenticated, a token will be provided to be used in the secured routes -->
+        <form method="POST" action="/api/v1/auth/login">
+            <!-- Username field -->
+            <label for="username">Username:</label>
+            <input 
+                type="text" 
+                name="username" 
+                placeholder="Username"
+            />
+
+            <br><br>
+
+            <!-- Password field -->
+            <label for="password">Password:</label>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Password"
+            />
+
+            <br><br>
+
+            <!-- Submit button -->
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <br>
+    <p>Don't have an account? Register instead.</p>
+    <br>
+    <form action="/api/v1/auth/register" method="get">
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to forever Log</h1>
+    <p>If you have an account please sign in below.  Otherwise, create an account NOW :></p>
+
+    <!-- Login "button" -->
+    <form action="/api/v1/auth/login" method="get">
+        <input type="submit" value="Login">
+    </form>
+
+    <br>
+
+    <!-- Register "button" -->
+    <form action="/api/v1/auth/register" method="get">
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

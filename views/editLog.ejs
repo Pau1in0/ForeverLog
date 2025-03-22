@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Log</title>
+</head>
+<body>
+    <!-- Button to go back to the dashboard -->
+    <form action="/api/v1/user/dashboard" method="get">
+        <input type="submit" value="Cancel"/>
+     </form>
+
+    <p>Edit your log</p>
+
+    <!-- Alert for error -->
+    <% if(errorMessage){ %>
+        <div><p>Error: <%= errorMessage %></p></div>
+    <% } %>
+
+    <!-- Here is a form, where the updatedTitle and updatedContent will be passed to the put route to put these updates of the log in the DB. -->
+    <div>
+        <form action="/api/v1/user/editor/<%= logObject.postID %>" method="POST">
+            <!-- Updated title input -->
+            <label for="updatedTitle">Title: </label>
+            <input 
+                type="text" name="updatedTitle" 
+                value="<%= logObject.title %>"
+            />
+
+            <br><br>
+
+            <!-- Updated content input -->
+            <label for="updatedContent">Content: </label>
+            <br>
+            <textarea 
+                name="updatedContent" 
+                cols="50" 
+                rows="20"
+            ><%= logObject.content %>
+            </textarea>
+
+            <br><br>
+
+            <!-- Submit button, it will put it on the update route -->
+            <input type="submit" value="Update Log"
+            />
+        </form>
+
+        <br><hr>
+
+        <form action="/api/v1/user/editor/delete/<%= logObject.postID %>" method="POST">
+            <input 
+                type="submit" 
+                value="Delete"
+            />
+        </form>
+    </div>
+</body>
+</html>

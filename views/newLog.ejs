@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Log</title>
+</head>
+<body>
+    <!-- Button to go back to the dashboard -->
+     <form action="/api/v1/user/dashboard" method="get">
+        <input type="submit" value="Return"/>
+     </form>
+
+     <!-- Alert for error -->
+    <% if(errorMessage){ %>
+        <div><p>Error: <%= errorMessage %></p></div>
+    <% } %>
+
+    <p>Please create your log below, both a title and content are required</p>
+
+    <!-- Here we have a form to create a new log, the title and content will be sent through the body, and be processed by the /editor route. -->
+    <div>
+        <form action="/api/v1/user/editor" method="POST">
+            <!-- Titlte input -->
+            <label for="title">Title: </label>
+            <input 
+                type="text" 
+                name="title" 
+                id="title"
+                placeholder="Some title"
+            />
+
+            <br><br>
+
+            <!-- Content input -->
+            <label for="content">Content: </label>
+            <br>
+            <textarea 
+                name="content"
+                id="content" 
+                cols="50" 
+                rows="20"
+            >
+            </textarea>
+
+            <br><br>
+
+            <!-- Submit button -->
+            <input 
+                type="submit" 
+                value="Create Log"
+            />
+        </form>
+    </div>
+</body>
+</html>

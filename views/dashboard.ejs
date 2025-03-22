@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <!-- You have access to req, and logs, which is the query result -->
+  <h1>
+    Welcome to Your Dashboard, <%= username %> 👑
+  </h1>
+
+  <p>
+    Here you can create, edit, and do whatever you want with your logs
+  </p>
+
+  <!-- Alert for error -->
+  <% if(errorMessage){ %>
+    <div><p>Error: <%= errorMessage %></p></div>
+  <% } %>
+
+  <hr>
+  <h2>
+    Your Logs: <%= logs.length %>
+  </h2>
+
+  <!-- Here we check the length of the logs, since it is an array of objects, if there is no objects, then we return an error, otherwise we render parts of the object into logs that get passed as list items -->
+  <ul>
+    <% if (logs.length === 0) { %>
+      <li style="list-style: none;">No logs found. 🥺</li>
+    <% } else { %>
+      <% logs.forEach(log => { %>
+        <li style="list-style: none;">
+          <strong>
+            <a href="/api/v1/user/editor/<%=log._id%>">
+              <%= log.title %>
+            </a>
+          </strong> - ID: <%= log._id %>
+        </li>
+      <% }) %>
+    <% } %>
+  </ul>
+
+  <form action="/api/v1/user/editor" method="GET">
+    <button type="submit">
+      New Log Entry
+    </button>
+  </form>
+</body>
+</html>
