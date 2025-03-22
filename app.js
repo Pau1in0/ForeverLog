@@ -40,6 +40,6 @@ app.use(
 app.use(xssSanitize());
 
 // Routes
-app.use('/api/v1', index);
+app.use('/', index);
 
 export default app;
