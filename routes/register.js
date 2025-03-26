@@ -54,7 +54,7 @@ router.post('/', validateRegistration, async (req, res) => {
 
     //If existingUser returns true, then return an error message and stop the function
     if(existingUser){
-        const errorMessage = 'User alerady exists';
+        const errorMessage = 'Invalid username or password';
         return res.render('register.ejs', { errorMessage });
     }
 
@@ -71,9 +71,9 @@ router.post('/', validateRegistration, async (req, res) => {
     await newUser.save();
 
     //After the newUser has been saved to the database, redirect the user to the login page
-    return res.redirect('/api/v1/auth/login', { errorMessage: null });
+    return res.redirect('/api/v1/auth/login');
    } catch (error){
-    const errorMessage = 'There was an error creating a new account';
+    const errorMessage = 'There was an error creating a new account, please try again later';
     return res.render('register.ejs', { errorMessage });
    }
 });
